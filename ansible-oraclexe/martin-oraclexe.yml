@@ -1,0 +1,17 @@
+---
+- name: Install Oracle XE
+  hosts: dbservers
+  user: vagrant
+  sudo: yes
+
+  vars_files:
+    - defaults/main.yml
+
+  tasks:
+    - name: Copy the Oracle XE Binary to the files directory
+      copy: 
+         src: /Users/martinjporter/Downloads/DevelopmentResources/Oracle/XE/oracle-xe-11.2.0-1.0.x86_64.rpm
+         dest: './files'
+
+    - name: Invoke The Ansible Galazy Wrapper for Oracle XE Install
+      include: tasks/main.yml
